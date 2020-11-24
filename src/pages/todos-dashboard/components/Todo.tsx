@@ -1,4 +1,4 @@
-import { TodoTask } from "./types";
+import { TodoTask } from "../../../types/types";
 
 export default function Todo({
   todo,
