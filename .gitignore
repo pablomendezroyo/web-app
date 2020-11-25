@@ -19,8 +19,8 @@ app/build
 .env.test.local
 .env.production.local
 
-web-app/npm-debug.log*
-web-app/yarn-debug.log*
-web-app/yarn-error.log*
-web-app/yarn.lock
+app/npm-debug.log*
+app/yarn-debug.log*
+app/yarn-error.log*
+app/yarn.lock
 .vscode
