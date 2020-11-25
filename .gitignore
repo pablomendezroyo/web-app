@@ -23,4 +23,4 @@ web-app/npm-debug.log*
 web-app/yarn-debug.log*
 web-app/yarn-error.log*
 web-app/yarn.lock
-
+.vscode
