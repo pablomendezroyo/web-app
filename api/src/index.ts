@@ -1,6 +1,11 @@
-import { deleteCompletedTodos } from "./edit-todos/deleteCompletedTodos";
-import { getTodos } from "./edit-todos/getTodos";
+import { removeCompletedTodos } from "./edit-todos/removeCompletedTodos";
+import { setTodo } from "./edit-todos/setTodo";
 
-const todos = deleteCompletedTodos();
+const todo = {
+  id: "sbhertetwerts",
+  name: "MetrIN9",
+  completed: true,
+  description: "sdtertjrty",
+};
 
-console.log(todos);
+removeCompletedTodos();
