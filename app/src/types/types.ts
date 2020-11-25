@@ -1,5 +1,12 @@
 export interface TodoTask {
   id: string;
   name: string;
-  complete: boolean;
+  completed: boolean;
+  description?: string;
+}
+
+export interface state {
+  response: string;
+  post: string;
+  responseToPost: string;
 }

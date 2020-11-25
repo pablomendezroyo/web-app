@@ -15,7 +15,7 @@ export default function Todo({
       <label>
         <input
           type="checkbox"
-          checked={todo.complete}
+          checked={todo.completed}
           onChange={handleTodoClick}
         />
         {todo.name}
