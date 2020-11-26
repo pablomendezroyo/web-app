@@ -4,9 +4,3 @@ export interface TodoTask {
   completed: boolean;
   description?: string;
 }
-
-export interface state {
-  response: string;
-  post: string;
-  responseToPost: string;
-}
