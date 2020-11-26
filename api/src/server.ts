@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { getTodos } from "./edit-todos/getTodos";
 import { setTodo } from "./edit-todos/setTodo";
 import { removeCompletedTodos } from "./edit-todos/removeCompletedTodos";
-import { setStatusTodos } from "./edit-todos/setStatusTodos";
+import { setStatusTodo } from "./edit-todos/setStatusTodo";
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,15 +22,15 @@ app.post("/api/set-todo", (req, res) => {
   );
 });
 
-app.post("/api/remove-todo", (req, res) => {
+app.post("/api/remove-completed-todos", (req, res) => {
   removeCompletedTodos();
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
   );
 });
 
-app.post("/api/set-status-todos", (req, res) => {
-  setStatusTodos(req.body);
+app.post("/api/set-status-todo", (req, res) => {
+  setStatusTodo(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`
   );
