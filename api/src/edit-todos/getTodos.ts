@@ -1,10 +1,13 @@
 import fs from "fs";
 import { TodoTask } from "../types/types";
+import { data_path } from "../env/data";
 
 export function getTodos(): TodoTask[] {
   //console.log(process.cwd());
+
   try {
-    const todos = fs.readFileSync("src/data/todos.json", "utf-8");
+    const todos = fs.readFileSync(data_path, "utf-8");
+
     console.log(JSON.parse(todos));
     if (!todos) return [];
     return JSON.parse(todos);
