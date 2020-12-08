@@ -1,6 +1,8 @@
 import axios from "axios";
-import "./todoStyles.css";
+import React from "react";
 import { TodoTask } from "../../../types/types";
+import { Card, CardTitle, CardText, CardBody } from "bootstrap-react";
+import "./todoStyles.css";
 
 export default function Todo({
   todo,
@@ -14,21 +16,19 @@ export default function Todo({
     apiSetStatusTodo(todo);
   }
   return (
-    <div className="single-todo">
-      <div className="single-todo-title">
-        <h3>{todo.name}</h3>
-      </div>
-      <div className="single-todo-content">
-        <p>
-          {todo.description}{" "}
+    <>
+      <Card className="card-todo">
+        <CardBody className="card-body">
+          <CardTitle className="card-title">{todo.name}</CardTitle>
+          <CardText className="card-text">{todo.description}</CardText>
           <input
             type="checkbox"
             checked={todo.completed}
             onChange={handleTodoClick}
           />
-        </p>
-      </div>
-    </div>
+        </CardBody>
+      </Card>
+    </>
   );
 }
 
