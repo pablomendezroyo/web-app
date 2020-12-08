@@ -1,5 +1,6 @@
 import React from "react";
 import TodoList from "./components/TodoList";
+import axios from "axios";
 import { TodoTask } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -43,30 +44,26 @@ export default function TodosBoard() {
 }
 
 async function apiGetTodos() {
-  const response = await fetch("/api/get-todos");
-  const body = await response.json();
-  if (response.status !== 200) throw Error(body.message);
-  return body;
+  try {
+    const response = await axios.get("/api/get-todos");
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 async function apiSetTodo(todo: TodoTask) {
-  const response = await fetch("/api/set-todo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todo),
-  });
-  const body = await response.json();
-  if (response.status !== 200) throw Error(body.message);
-  return body;
+  try {
+    await axios.post("/api/set-todo", todo);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 async function apiRemoveTodos() {
-  const response = await fetch("/api/remove-completed-todos", {
-    method: "POST",
-  });
-  const body = await response.json();
-  if (response.status !== 200) throw Error(body.message);
-  return body;
+  try {
+    await axios.post("/api/remove-completed-todos");
+  } catch (e) {
+    console.log(e);
+  }
 }
