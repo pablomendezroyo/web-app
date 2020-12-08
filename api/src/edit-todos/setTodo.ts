@@ -8,7 +8,7 @@ export function setTodo(todo: TodoTask) {
     id: todo.id,
     name: todo.name,
     completed: todo.completed,
-    description: todo.description,
+    //description: todo.description,
   });
   setTodos(todos);
 }

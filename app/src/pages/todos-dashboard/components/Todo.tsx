@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { TodoTask } from "../../../types/types";
 
@@ -8,16 +9,14 @@ export default function Todo({
   todo: TodoTask;
   toggleTodo: Function;
 }): JSX.Element {
-  const todoStatusRef = React.useRef<HTMLInputElement>(null);
   function handleTodoClick() {
     toggleTodo(todo.id);
-    apiSetStatusTodo(todo.id);
+    apiSetStatusTodo(todo);
   }
   return (
     <div>
       <label>
         <input
-          ref={todoStatusRef}
           type="checkbox"
           checked={todo.completed}
           onChange={handleTodoClick}
@@ -28,15 +27,10 @@ export default function Todo({
   );
 }
 
-async function apiSetStatusTodo(todoId: string) {
-  const response = await fetch("/api/set-status-todo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todoId),
-  });
-  const body = await response.json();
-  if (response.status !== 200) throw Error(body.message);
-  return body;
+async function apiSetStatusTodo(todo: TodoTask) {
+  try {
+    await axios.post("/api/set-status-todo", todo);
+  } catch (e) {
+    console.log(e);
+  }
 }
