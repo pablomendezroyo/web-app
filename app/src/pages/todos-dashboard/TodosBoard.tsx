@@ -5,6 +5,7 @@ import { TodoTask } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function TodosBoard() {
+  const [idFromButtonClick, setIdFromButtonClick] = React.useState(0);
   const [todos, setTodos] = React.useState<TodoTask[]>([]);
   const todoNameRef = React.useRef<HTMLInputElement>(null);
 
@@ -12,7 +13,7 @@ export default function TodosBoard() {
     apiGetTodos()
       .then((res) => setTodos(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, [idFromButtonClick]);
 
   function toggleTodo(id: string) {
     const newTodos = [...todos];
@@ -32,6 +33,34 @@ export default function TodosBoard() {
     }
   }
 
+  // API calls
+  async function apiGetTodos() {
+    try {
+      const response = await axios.get("/api/get-todos");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function apiSetTodo(todo: TodoTask) {
+    try {
+      await axios.post("/api/set-todo", todo);
+      setIdFromButtonClick(idFromButtonClick + 1);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function apiRemoveTodos() {
+    try {
+      await axios.post("/api/remove-completed-todos");
+      setIdFromButtonClick(idFromButtonClick + 1);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
@@ -41,29 +70,4 @@ export default function TodosBoard() {
       <div>{todos.filter((todo) => !todo.completed).length}</div>
     </>
   );
-}
-
-async function apiGetTodos() {
-  try {
-    const response = await axios.get("/api/get-todos");
-    return response.data;
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-async function apiSetTodo(todo: TodoTask) {
-  try {
-    await axios.post("/api/set-todo", todo);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-async function apiRemoveTodos() {
-  try {
-    await axios.post("/api/remove-completed-todos");
-  } catch (e) {
-    console.log(e);
-  }
 }
