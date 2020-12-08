@@ -8,6 +8,7 @@ export default function TodosBoard() {
   const [idFromButtonClick, setIdFromButtonClick] = React.useState(0);
   const [todos, setTodos] = React.useState<TodoTask[]>([]);
   const todoNameRef = React.useRef<HTMLInputElement>(null);
+  const todoDescriptionRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     apiGetTodos()
@@ -23,10 +24,11 @@ export default function TodosBoard() {
   }
 
   function addTodoHandler() {
-    if (todoNameRef.current) {
+    if (todoNameRef.current && todoDescriptionRef.current) {
       const todo: TodoTask = {
         id: uuidv4(),
         name: todoNameRef.current.value,
+        description: todoDescriptionRef.current.value,
         completed: false,
       };
       apiSetTodo(todo);
@@ -64,7 +66,8 @@ export default function TodosBoard() {
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input ref={todoNameRef} type="text" />
+      <input placeholder="Title" ref={todoNameRef} type="text" />
+      <input placeholder="Description" ref={todoDescriptionRef} type="text" />
       <button onClick={addTodoHandler}>Add todo</button>
       <button onClick={apiRemoveTodos}>Clear completed todos</button>
       <div>{todos.filter((todo) => !todo.completed).length}</div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import "./todoStyles.css";
 import { TodoTask } from "../../../types/types";
 
 export default function Todo({
@@ -14,15 +14,20 @@ export default function Todo({
     apiSetStatusTodo(todo);
   }
   return (
-    <div>
-      <label>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={handleTodoClick}
-        />
-        {todo.name}
-      </label>
+    <div className="single-todo">
+      <div className="single-todo-title">
+        <h3>{todo.name}</h3>
+      </div>
+      <div className="single-todo-content">
+        <p>
+          {todo.description}{" "}
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={handleTodoClick}
+          />
+        </p>
+      </div>
     </div>
   );
 }

@@ -7,8 +7,8 @@ export function setTodo(todo: TodoTask) {
   todos.push({
     id: todo.id,
     name: todo.name,
+    description: todo.description,
     completed: todo.completed,
-    //description: todo.description,
   });
   setTodos(todos);
 }
