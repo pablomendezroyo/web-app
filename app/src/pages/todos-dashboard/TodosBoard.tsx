@@ -4,6 +4,12 @@ import axios from "axios";
 import { TodoTask } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import ProgressBar from "react-bootstrap/ProgressBar";
+
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 export default function TodosBoard() {
   const [idFromButtonClick, setIdFromButtonClick] = React.useState(0);
   const [todos, setTodos] = React.useState<TodoTask[]>([]);
@@ -66,11 +72,40 @@ export default function TodosBoard() {
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input placeholder="Title" ref={todoNameRef} type="text" />
-      <input placeholder="Description" ref={todoDescriptionRef} type="text" />
-      <button onClick={addTodoHandler}>Add todo</button>
-      <button onClick={apiRemoveTodos}>Clear completed todos</button>
-      <div>{todos.filter((todo) => !todo.completed).length}</div>
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Todo title</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Todo title"
+            ref={todoNameRef}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Todo description</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Todo text"
+            ref={todoDescriptionRef}
+          />
+        </Form.Group>
+        <Button variant="primary" onClick={addTodoHandler}>
+          Add todo
+        </Button>
+      </Form>
+      <Button variant="secondary" onClick={apiRemoveTodos}>
+        Clear completed todos
+      </Button>
+      <ProgressBar
+        variant="success"
+        animated={true}
+        max={todos.length}
+        now={todos.filter((todo) => todo.completed).length}
+      ></ProgressBar>
+      <div>
+        Todos remaining: {todos.filter((todo) => !todo.completed).length}
+      </div>
     </>
   );
 }
