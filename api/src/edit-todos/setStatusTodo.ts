@@ -1,8 +1,8 @@
-import { TodoTask } from "../types/types";
+import { Content } from "../types/types";
 import { getTodos } from "./getTodos";
 import { setTodos } from "./setTodos";
 
-export function setStatusTodo(todo: TodoTask) {
+export function setStatusTodo(todo: Content) {
   const todos = getTodos();
   const todoChangeStatus = todos.find((match) => match.id === todo.id);
   if (todoChangeStatus) {

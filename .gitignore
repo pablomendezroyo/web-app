@@ -26,4 +26,9 @@ app/yarn-debug.log*
 app/yarn-error.log*
 app/yarn.lock
 
+api/npm-debug.log*
+api/yarn-debug.log*
+api/yarn-error.log*
+api/yarn.lock
+
 /.vscode

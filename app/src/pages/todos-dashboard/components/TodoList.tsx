@@ -1,12 +1,12 @@
 import React from "react";
 import Todo from "./Todo";
-import { TodoTask } from "../../../types/types";
+import { Content } from "../../../types/types";
 
 export default function TodoList({
   todos,
   toggleTodo,
 }: {
-  todos: TodoTask[];
+  todos: Content[];
   toggleTodo: Function;
 }): JSX.Element {
   return (
