@@ -100,7 +100,7 @@ export default function TodosBoard() {
               <option>Geografía e Historia</option>
               <option>Latín</option>
               <option>Deberes</option>
-              <option>Otro</option>{" "}
+              <option>Otros</option>{" "}
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="formTitleContent">
