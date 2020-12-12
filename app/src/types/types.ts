@@ -1,12 +1,9 @@
-export interface TodoTask {
+export interface Content {
+  subject: string;
   id: string;
   name: string;
   completed: boolean;
   description: string;
-}
-
-export interface state {
-  response: string;
-  post: string;
-  responseToPost: string;
+  link: string;
+  linkName: string;
 }

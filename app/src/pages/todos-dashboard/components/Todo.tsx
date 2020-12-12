@@ -1,7 +1,8 @@
 import axios from "axios";
 import React from "react";
-import { TodoTask } from "../../../types/types";
-import Card from "react-bootstrap/Card";
+import { Content } from "../../../types/types";
+import { Card, ToggleButton } from "react-bootstrap";
+import { headerColors } from "./headerColors";
 import "./todoStyles.css";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -9,7 +10,7 @@ export default function Todo({
   todo,
   toggleTodo,
 }: {
-  todo: TodoTask;
+  todo: Content;
   toggleTodo: Function;
 }): JSX.Element {
   function handleTodoClick() {
@@ -18,18 +19,31 @@ export default function Todo({
   }
   return (
     <>
-      <div className="container-fluid d-flex justify-content-center">
+      <div className="container-cards d-flex justify-content-center">
         <Card>
-          <Card.Header>jj</Card.Header>
+          <Card.Header
+            style={{
+              backgroundColor: headerColors.find(
+                (item) => item.subject === todo.subject
+              )?.color,
+            }}
+          >
+            {todo.subject}
+          </Card.Header>
           <Card.Title>{todo.name}</Card.Title>
 
           <Card.Body>
             <Card.Text>{todo.description}</Card.Text>
-            <input
-              type="checkbox"
+            <ToggleButton
               checked={todo.completed}
+              type="checkbox"
+              value={todo.completed}
               onChange={handleTodoClick}
-            />
+            ></ToggleButton>
+
+            {todo.link ? (
+              <Card.Link href={`${todo.link}`}>{todo.linkName}</Card.Link>
+            ) : null}
           </Card.Body>
         </Card>
       </div>
@@ -37,7 +51,7 @@ export default function Todo({
   );
 }
 
-async function apiSetStatusTodo(todo: TodoTask) {
+async function apiSetStatusTodo(todo: Content) {
   try {
     await axios.post("/api/set-status-todo", todo);
   } catch (e) {

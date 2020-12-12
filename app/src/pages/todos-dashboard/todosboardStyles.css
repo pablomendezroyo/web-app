@@ -1,4 +1,19 @@
-.progressbar {
-  width: 20rem;
-  margin-top: 20px;
+.form-inline {
+  width: 100%;
+}
+
+.form-group {
+  width: 90%;
+}
+
+.input-group {
+  width: 90% !important;
+}
+
+.form-control {
+  width: 50% !important;
+}
+
+.container {
+  border: solid;
 }

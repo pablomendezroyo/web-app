@@ -10,16 +10,16 @@ export default function NavBar() {
         <div className="navbar-links">
           <ul>
             <li>
-              <a href="/home">Home</a>{" "}
+              <a href="/home">Inicio</a>{" "}
             </li>
             <li>
-              <a href="/about">About</a>{" "}
+              <a href="/about">Sobre mí</a>{" "}
             </li>
             <li>
-              <a href="/todos">Todos</a>{" "}
+              <a href="/todos">Contenido</a>{" "}
             </li>
             <li>
-              <a href="/contact">Contact</a>{" "}
+              <a href="/contact">Contacto</a>{" "}
             </li>
           </ul>
         </div>

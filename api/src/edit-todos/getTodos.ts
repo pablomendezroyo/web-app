@@ -1,8 +1,8 @@
 import fs from "fs";
-import { TodoTask } from "../types/types";
+import { Content } from "../types/types";
 import { data_path } from "../env/data";
 
-export function getTodos(): TodoTask[] {
+export function getTodos(): Content[] {
   //console.log(process.cwd());
 
   try {
