@@ -164,13 +164,8 @@ export default function ContentsDashBoard() {
                 ref={contentLinkNameRef}
               />
             </Form.Group>
-
-            <input
-              type="file"
-              multiple={false}
-              onChange={addFileHandler}
-            ></input>
           </Form.Row>
+          <input type="file" multiple={false} onChange={addFileHandler}></input>
 
           <Button variant="primary" onClick={addContentHandler}>
             Añadir contenido

@@ -28,7 +28,7 @@ app.post("/api/upload", (req, res) => {
       console.log(fileName);
 
       //mv(path, CB function(err))
-      fileName.mv("./public/files/" + fileName.name, (err) => {
+      fileName.mv(filePath + fileName.name, (err) => {
         if (err) res.status(500).send(err);
         else res.sendStatus(200);
       });
@@ -58,6 +58,23 @@ app.get("/api/get-contents", (req, res) => {
   } catch (e) {
     console.log(e);
     res.sendStatus(404);
+  }
+});
+
+app.get("/api/download", (req, res) => {
+  console.log(req);
+  try {
+    const file = `${filePath}/${req.body}`;
+
+    res.download(filePath, req.body.path, function (err) {
+      if (err) {
+        // Handle error, but keep in mind the response may be partially-sent
+        res.sendStatus(500);
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
   }
 });
 

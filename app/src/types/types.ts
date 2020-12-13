@@ -6,5 +6,5 @@ export interface ContentInterface {
   description: string;
   link: string;
   linkName: string;
-  filePath?: string;
+  filePath: string;
 }
