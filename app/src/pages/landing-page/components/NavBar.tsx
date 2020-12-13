@@ -16,7 +16,7 @@ export default function NavBar() {
               <a href="/about">Sobre mí</a>{" "}
             </li>
             <li>
-              <a href="/todos">Contenido</a>{" "}
+              <a href="/content">Contenido</a>{" "}
             </li>
             <li>
               <a href="/contact">Contacto</a>{" "}

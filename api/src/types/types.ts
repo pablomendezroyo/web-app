@@ -6,4 +6,5 @@ export interface Content {
   description: string;
   link: string;
   linkName: string;
+  filePath: string;
 }

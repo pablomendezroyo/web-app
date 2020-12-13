@@ -1,4 +1,4 @@
-export interface Content {
+export interface ContentInterface {
   subject: string;
   id: string;
   name: string;
@@ -6,4 +6,5 @@ export interface Content {
   description: string;
   link: string;
   linkName: string;
+  filePath?: string;
 }
