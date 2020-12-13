@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import { getContents } from "./edit-Contents/getContents";
 import { setContent } from "./edit-Contents/setContent";
 import { removeCompletedContents } from "./edit-Contents/removeCompletedContents";
@@ -61,17 +60,18 @@ app.get("/api/get-contents", (req, res) => {
   }
 });
 
-app.get("/api/download", (req, res) => {
-  console.log(req);
+app.post("/api/download", (req, res) => {
+  console.log(JSON.stringify(req.body.fileName));
   try {
-    const file = `${filePath}/${req.body}`;
-
-    res.download(filePath, req.body.path, function (err) {
-      if (err) {
-        // Handle error, but keep in mind the response may be partially-sent
-        res.sendStatus(500);
+    res.sendFile(
+      `/public/files/${JSON.stringify(req.body.fileName)}`,
+      function (err) {
+        if (err) {
+          // Handle error, but keep in mind the response may be partially-sent
+          res.sendStatus(500);
+        }
       }
-    });
+    );
   } catch (e) {
     console.log(e);
     res.sendStatus(500);

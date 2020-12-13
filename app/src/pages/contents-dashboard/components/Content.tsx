@@ -46,14 +46,9 @@ export default function Content({
               <Card.Link href={`${content.link}`}>{content.linkName}</Card.Link>
             ) : null}
             {content.filePath.length > 0 ? (
-              <Card.Link
-                onClick={(_event: any) =>
-                  content.filePath ? apiGetFile(content.filePath) : null
-                }
-                download
-              >
-                Descargar
-              </Card.Link>
+              <Button onClick={(e) => apiGetFile(content.filePath)}>
+                Download
+              </Button>
             ) : null}
           </Card.Body>
         </Card>
@@ -61,9 +56,6 @@ export default function Content({
     </>
   );
 }
-/* const config: AxiosRequestConfig = {
-  data
-} */
 
 async function apiGetFile(filePath: string) {
   try {
